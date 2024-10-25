@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function HomePage() {
+const HomePage = () => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
@@ -33,6 +33,6 @@ function HomePage() {
       </ul>
     </div>
   );
-}
+};
 
 export default HomePage;
