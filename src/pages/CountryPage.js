@@ -49,19 +49,27 @@ const CountryPage = () => {
   }
 
   return (
-    <div>
-      <h1>{country.countryInfo.commonName}</h1>
-      {country.flagUrl && (
-        <img
-          src={country.flagUrl}
-          alt={`${country.countryInfo.commonName} flag`}
-          style={{ width: '200px' }}
-        />
-      )}
-      <h2>Border Countries:</h2>
-      <ul>
+    <div className="container">
+      <h1 className="text-center">
+        {country.flagUrl && (
+          <img
+            src={country.flagUrl}
+            alt={`${country.countryInfo.commonName} flag`}
+            style={{
+              width: '30px',
+              height: '30px',
+              borderRadius: '100%',
+              objectFit: 'cover',
+              marginRight: '10px',
+            }}
+          />
+        )}
+        {country.countryInfo.commonName}
+      </h1>
+      <h2 className="text-left">Border Countries:</h2>
+      <ul className="d-flex" style={{ gap: '10px' }}>
         {country.borders.map((borderCountry) => (
-          <li key={borderCountry.commonName}>
+          <li key={borderCountry.commonName} style={{ listStyle: 'none' }}>
             <Link to={`/country/${borderCountry.countryCode}`}>
               {borderCountry.commonName}
             </Link>

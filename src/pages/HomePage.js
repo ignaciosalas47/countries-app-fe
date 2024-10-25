@@ -23,15 +23,17 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Available Countries</h1>
-      <ul>
+    <div className="container">
+      <h1 className="text-center">Available Countries</h1>
+      <div className="row">
         {countries.map((country) => (
-          <li key={country.name}>
-            <Link to={`/country/${country.countryCode}`}>{country.name}</Link>
-          </li>
+          <div key={country.name} className=" col-12 col-sm-6 col-lg-3 ">
+            <div className="alert alert-light">
+              <Link to={`/country/${country.countryCode}`}>{country.name}</Link>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
