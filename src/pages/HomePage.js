@@ -1,7 +1,7 @@
 // src/pages/HomePage.js
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
@@ -10,11 +10,12 @@ const HomePage = () => {
     const fetchCountries = async () => {
       try {
         const response = await axios.get(
+          // eslint-disable-next-line no-undef
           `${process.env.REACT_APP_BACKEND_URL}/api/countries`
         );
         setCountries(response.data);
       } catch (error) {
-        console.error("Error fetching countries:", error);
+        console.error('Error fetching countries:', error);
       }
     };
 

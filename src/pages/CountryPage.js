@@ -1,17 +1,17 @@
 // src/pages/CountryPage.js
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams, Link } from "react-router-dom";
-import { Line } from "react-chartjs-2";
-import "chart.js/auto";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 const getGraphData = (countryInfo) => ({
   labels: countryInfo.populationData.map((data) => data.year),
   datasets: [
     {
-      label: "Population Over Time",
+      label: 'Population Over Time',
       data: countryInfo.populationData.map((data) => data.value),
-      borderColor: "rgba(75,192,192,1)",
+      borderColor: 'rgba(75,192,192,1)',
       fill: false,
     },
   ],
@@ -20,21 +20,22 @@ const getGraphData = (countryInfo) => ({
 const CountryPage = () => {
   const { code } = useParams();
   const [country, setCountry] = useState(null);
-  const [graphData, setGraphData] = useState(null)
+  const [graphData, setGraphData] = useState(null);
 
   useEffect(() => {
     const fetchCountryInfo = async () => {
       try {
         const response = await axios.get(
+          // eslint-disable-next-line no-undef
           `${process.env.REACT_APP_BACKEND_URL}/api/countries/${code}`
         );
         setCountry(response.data);
 
         if (response.data.populationData?.length > 0) {
-          setGraphData(getGraphData(response.data))        
+          setGraphData(getGraphData(response.data));
         }
       } catch (error) {
-        console.error("Error fetching country info:", error);
+        console.error('Error fetching country info:', error);
       }
     };
 
@@ -54,14 +55,16 @@ const CountryPage = () => {
         <img
           src={country.flagUrl}
           alt={`${country.countryInfo.commonName} flag`}
-          style={{ width: "200px" }}
+          style={{ width: '200px' }}
         />
       )}
       <h2>Border Countries:</h2>
       <ul>
         {country.borders.map((borderCountry) => (
           <li key={borderCountry.commonName}>
-            <Link to={`/country/${borderCountry.countryCode}`}>{borderCountry.commonName}</Link>
+            <Link to={`/country/${borderCountry.countryCode}`}>
+              {borderCountry.commonName}
+            </Link>
           </li>
         ))}
       </ul>
